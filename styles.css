@@ -1,18 +1,18 @@
 /* =====================================================
    KAGE — PORTFOLIO
-   Cormorant Garamond display + JetBrains Mono utility.
+   Inter sans-serif throughout. Christopher Ha-style work grid.
    Dark mode default with light toggle.
    ===================================================== */
 
 /* ---------- TOKENS ---------- */
 :root,
 :root[data-theme="dark"] {
-  --bg: #0e0d0c;          /* warm near-black, slight brown */
-  --bg-deep: #161513;     /* slightly lifted surface */
-  --ink: #f0ece4;         /* warm off-white — never pure */
-  --ink-soft: #a39d92;    /* muted body */
-  --ink-faint: #6a655d;   /* tertiary, metadata */
-  --rule: #2c2924;        /* hairlines */
+  --bg: #0e0d0c;
+  --bg-deep: #161513;
+  --ink: #f0ece4;
+  --ink-soft: #a39d92;
+  --ink-faint: #6a655d;
+  --rule: #2c2924;
 }
 
 :root[data-theme="light"] {
@@ -28,7 +28,7 @@
   --max-w: 1280px;
   --pad-x: clamp(20px, 4vw, 56px);
 
-  --display: "Cormorant Garamond", "Times New Roman", Times, serif;
+  --display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
   --t-fast: 180ms;
@@ -49,10 +49,12 @@ body {
   color: var(--ink);
   font-family: var(--display);
   font-weight: 400;
-  font-size: 19px;
-  line-height: 1.45;
+  font-size: 16px;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Inter has good default features but tabular-nums + cv11 (single-story a) feel cleaner for portfolio use */
+  font-feature-settings: "ss01", "cv11";
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -73,7 +75,7 @@ img, iframe { max-width: 100%; display: block; }
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 28px var(--pad-x) 0;
+  padding: 24px var(--pad-x) 0;
   max-width: var(--max-w);
   width: 100%;
   margin: 0 auto;
@@ -81,9 +83,8 @@ img, iframe { max-width: 100%; display: block; }
 
 .name {
   font-family: var(--display);
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(22px, 2.1vw, 28px);
+  font-weight: 500;
+  font-size: clamp(15px, 1.25vw, 17px);
   letter-spacing: -0.005em;
   transition: opacity var(--t-fast) var(--ease);
 }
@@ -91,12 +92,11 @@ img, iframe { max-width: 100%; display: block; }
 
 .nav {
   display: flex;
-  gap: 0.4em;
+  gap: 0.35em;
   align-items: baseline;
   font-family: var(--display);
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(22px, 2.1vw, 28px);
+  font-weight: 500;
+  font-size: clamp(15px, 1.25vw, 17px);
   letter-spacing: -0.005em;
 }
 
@@ -109,7 +109,7 @@ img, iframe { max-width: 100%; display: block; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-left: 18px;
+  margin-left: 16px;
   padding: 4px 6px;
   border-radius: 50%;
   transition: opacity var(--t-fast) var(--ease), transform var(--t-mid) var(--ease);
@@ -120,12 +120,11 @@ img, iframe { max-width: 100%; display: block; }
 
 .theme-toggle-icon {
   font-family: var(--display);
-  font-style: normal;
   display: inline-block;
   line-height: 1;
 }
-:root[data-theme="dark"] .theme-toggle-icon::before { content: "○"; font-size: 18px; }
-:root[data-theme="light"] .theme-toggle-icon::before { content: "●"; font-size: 18px; }
+:root[data-theme="dark"] .theme-toggle-icon::before { content: "○"; font-size: 14px; }
+:root[data-theme="light"] .theme-toggle-icon::before { content: "●"; font-size: 14px; }
 
 /* ---------- MAIN ---------- */
 main {
@@ -137,54 +136,56 @@ main {
 }
 
 /* ---------- WORK SECTION ---------- */
+/* Reduced top padding so first project sits closer to header,
+   matching Christopher Ha's tighter spacing. */
 .work {
-  padding-top: clamp(80px, 18vh, 200px);
-  padding-bottom: clamp(80px, 14vh, 160px);
+  padding-top: clamp(40px, 6vh, 80px);
+  padding-bottom: clamp(80px, 12vh, 140px);
   display: flex;
   flex-direction: column;
-  gap: clamp(80px, 12vh, 140px);
+  gap: clamp(72px, 10vh, 120px);
 }
 
 /* ---------- PROJECT BLOCK ---------- */
 .project {
   border-top: 1px solid var(--rule);
-  padding-top: 36px;
+  padding-top: 28px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 28px;
   transition: border-color var(--t-mid) var(--ease);
 }
 
 .project-header {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 
+/* Project titles: bold sans, restrained size — Christopher Ha shape.
+   Big enough to anchor each block, not so big it's a billboard. */
 .project-title {
   font-family: var(--display);
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(40px, 6.4vw, 84px);
-  line-height: 0.98;
-  letter-spacing: -0.015em;
+  font-weight: 700;
+  font-size: clamp(26px, 2.6vw, 36px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   margin: 0;
+  color: var(--ink);
 }
 
 .project-subtitle {
   font-family: var(--display);
-  font-style: italic;
   font-weight: 400;
-  font-size: clamp(17px, 1.6vw, 21px);
+  font-size: clamp(15px, 1.3vw, 17px);
+  line-height: 1.4;
   color: var(--ink-soft);
-  margin: 6px 0 0;
+  margin: 2px 0 0;
   max-width: 56ch;
-  letter-spacing: 0.005em;
+  letter-spacing: -0.005em;
 }
 
 /* ---------- MEDIA (thumb + iframe in same cell) ---------- */
-/* Trigger button and iframe stack in the same grid cell. We toggle visibility
-   via .is-playing — no layout shift, page below stays put. */
 .project-media {
   position: relative;
   background: #000;
@@ -231,16 +232,16 @@ main {
 
 .play-trigger:hover .play-thumb,
 .play-trigger:focus-visible .play-thumb {
-  transform: scale(1.025);
-  filter: brightness(1.08);
+  transform: scale(1.02);
+  filter: brightness(1.06);
 }
 
 .play-icon {
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 68px;
-  height: 68px;
+  width: 64px;
+  height: 64px;
   display: grid;
   place-items: center;
   border-radius: 50%;
@@ -249,7 +250,7 @@ main {
   -webkit-backdrop-filter: blur(6px);
   color: #fff;
   font-family: var(--mono);
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 0.1em;
   padding-left: 4px;
   transition: transform var(--t-mid) var(--ease), background var(--t-fast) var(--ease);
@@ -275,45 +276,38 @@ main {
   transition: opacity var(--t-mid) var(--ease);
 }
 
-.project.is-playing .play-trigger {
-  opacity: 0;
-  pointer-events: none;
-}
-.project.is-playing .play-frame {
-  opacity: 1;
-  z-index: 2;
-}
+.project.is-playing .play-trigger { opacity: 0; pointer-events: none; }
+.project.is-playing .play-frame { opacity: 1; z-index: 2; }
 
 /* ---------- META: description + grid (two-col on desktop) ---------- */
 .project-meta {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 36px;
+  gap: 32px;
   align-items: start;
 }
 
 @media (min-width: 800px) {
   .project-meta {
     grid-template-columns: 1.4fr 1fr;
-    gap: 64px;
+    gap: 56px;
   }
 }
 
 .project-description p {
   font-family: var(--display);
-  font-style: italic;
   font-weight: 400;
-  font-size: clamp(17px, 1.5vw, 21px);
+  font-size: clamp(15px, 1.3vw, 17px);
   line-height: 1.55;
   color: var(--ink);
   margin: 0 0 1em;
   max-width: 56ch;
-  letter-spacing: 0.005em;
+  letter-spacing: -0.005em;
 }
 .project-description p:last-child { margin-bottom: 0; }
 
-/* Christopher Ha / Daybreak Studio shape:
-   label (muted mono) on left, value (full ink mono) on right, hairlines between. */
+/* Metadata grid — kept in mono for textural contrast against sans-serif body.
+   This is the only place mono lives now. */
 .project-grid {
   margin: 0;
   display: flex;
@@ -324,29 +318,27 @@ main {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 16px;
-  padding: 14px 0;
+  padding: 12px 0;
   border-top: 1px solid var(--rule);
   align-items: start;
 }
-.project-grid-row:last-child {
-  border-bottom: 1px solid var(--rule);
-}
+.project-grid-row:last-child { border-bottom: 1px solid var(--rule); }
 
 .project-grid dt {
   font-family: var(--mono);
   font-size: 11px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ink-faint);
   margin: 0;
-  padding-top: 2px;
+  padding-top: 1px;
   font-weight: 400;
 }
 
 .project-grid dd {
   font-family: var(--mono);
   font-size: 12px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
   color: var(--ink);
   margin: 0;
   text-align: right;
@@ -356,10 +348,10 @@ main {
 
 /* ---------- INFORMATION SECTION ---------- */
 .info {
-  padding: clamp(80px, 14vh, 160px) 0;
+  padding: clamp(80px, 14vh, 160px) 0 clamp(60px, 10vh, 120px);
   display: grid;
   grid-template-columns: 1fr;
-  gap: 56px;
+  gap: 48px;
   border-top: 1px solid var(--rule);
 }
 
@@ -367,48 +359,29 @@ main {
   .info { grid-template-columns: 2fr 1fr; gap: 80px; }
 }
 
-/* The lede is the manifesto-size statement. Big italic, tight leading,
-   short max-width so it wraps as a 2-3 line poem. */
+/* Bio lede — display-size sans, the manifesto statement.
+   "Kage is a storytelling operator building brands from 0 to 1." */
 .info-lede {
   font-family: var(--display);
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(36px, 5vw, 68px);
-  line-height: 1.05;
-  letter-spacing: -0.018em;
+  font-weight: 500;
+  font-size: clamp(28px, 3.4vw, 48px);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
   color: var(--ink);
-  max-width: 18ch;
-  margin: 0 0 0.6em;
+  max-width: 22ch;
+  margin: 0 0 0.5em;
 }
 
+/* Bio body — slightly smaller, muted, supporting paragraph */
 .info-body {
   font-family: var(--display);
   font-weight: 400;
-  font-style: italic;
-  font-size: clamp(18px, 1.7vw, 22px);
-  line-height: 1.5;
+  font-size: clamp(18px, 1.8vw, 24px);
+  line-height: 1.4;
   color: var(--ink-soft);
-  max-width: 42ch;
-  margin: 0 0 1.5em;
-  letter-spacing: 0.005em;
-}
-
-.info-body em {
-  font-style: normal;
-  border-bottom: 1px solid var(--ink-soft);
-  padding-bottom: 1px;
-}
-
-/* Availability line — quieter than bio, sits below as a working-creative status */
-.info-availability {
-  font-family: var(--mono);
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  color: var(--ink-faint);
+  max-width: 38ch;
   margin: 0;
-  max-width: 50ch;
-  line-height: 1.5;
+  letter-spacing: -0.01em;
 }
 
 .info-contact {
@@ -421,7 +394,7 @@ main {
 .info-link {
   font-family: var(--mono);
   font-size: 12px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   color: var(--ink);
   position: relative;
   padding-bottom: 2px;
@@ -441,31 +414,26 @@ main {
 .info-link:hover { color: var(--ink-soft); }
 .info-link:hover::after { transform: scaleX(0); transform-origin: left; }
 
-/* Placeholder LinkedIn link — visual reminder to fill in the real URL */
-.info-link--placeholder {
-  opacity: 0.5;
-}
-
 /* ---------- FOOTER ---------- */
 .footer {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 28px var(--pad-x) 32px;
+  padding: 24px var(--pad-x) 28px;
   max-width: var(--max-w);
   width: 100%;
   margin: 0 auto;
   border-top: 1px solid var(--rule);
   font-family: var(--mono);
   font-size: 11px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   color: var(--ink-faint);
   text-transform: uppercase;
 }
 .footer-name {
   font-family: var(--display);
-  font-style: italic;
-  font-size: 17px;
+  font-weight: 500;
+  font-size: 13px;
   letter-spacing: -0.005em;
   text-transform: none;
   color: var(--ink);
@@ -473,8 +441,8 @@ main {
 
 /* ---------- MOBILE TWEAKS ---------- */
 @media (max-width: 640px) {
-  .work { padding-top: 72px; padding-bottom: 72px; gap: 80px; }
-  .play-icon { width: 54px; height: 54px; }
+  .work { padding-top: 40px; padding-bottom: 60px; gap: 64px; }
+  .play-icon { width: 52px; height: 52px; font-size: 12px; }
   .footer { flex-direction: column; gap: 8px; align-items: flex-start; }
   .project-grid-row { grid-template-columns: 1fr 1.6fr; gap: 12px; }
 }
