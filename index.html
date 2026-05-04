@@ -1,315 +1,456 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+/* =====================================================
+   KAGE — PORTFOLIO
+   Inter sans-serif throughout. Christopher Ha-style work grid.
+   Dark mode default with light toggle.
+   ===================================================== */
 
-<!-- ===== SEO / SOCIAL PREVIEW ===== -->
-<title>Kage — Selected Work</title>
-<meta name="description" content="Storytelling operator. Founder of 3.33am Studios. Selected work.">
-<meta name="author" content="Kage">
+/* ---------- TOKENS ---------- */
+:root,
+:root[data-theme="dark"] {
+  --bg: #0e0d0c;
+  --bg-deep: #161513;
+  --ink: #f0ece4;
+  --ink-soft: #a39d92;
+  --ink-faint: #6a655d;
+  --rule: #2c2924;
+}
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Kage — Selected Work">
-<meta property="og:description" content="Storytelling operator. Founder of 3.33am Studios.">
-<meta property="og:image" content="https://i.ytimg.com/vi/cnjMG6PJPHU/maxresdefault.jpg">
-<meta property="og:url" content="https://yourusername.github.io/portfolio/">
+:root[data-theme="light"] {
+  --bg: #f6f4ef;
+  --bg-deep: #efece4;
+  --ink: #161513;
+  --ink-soft: #5a5854;
+  --ink-faint: #a09e98;
+  --rule: #d8d4c8;
+}
 
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Kage — Selected Work">
-<meta name="twitter:description" content="Storytelling operator. Founder of 3.33am Studios.">
-<meta name="twitter:image" content="https://i.ytimg.com/vi/cnjMG6PJPHU/maxresdefault.jpg">
+:root {
+  --max-w: 1280px;
+  --pad-x: clamp(20px, 4vw, 56px);
 
-<!-- Inline SVG favicon -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230e0d0c'/%3E%3Ctext x='50' y='70' font-family='Inter,Arial,sans-serif' font-weight='700' font-size='66' fill='%23f0ece4' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+  --display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
-<!-- Inter for everything. JetBrains Mono retained for metadata grid only. -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  --t-fast: 180ms;
+  --t-mid: 380ms;
+  --t-slow: 700ms;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
 
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
+/* ---------- RESET ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html {
+  background: var(--bg);
+  transition: background-color var(--t-mid) var(--ease);
+}
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Inter has good default features but tabular-nums + cv11 (single-story a) feel cleaner for portfolio use */
+  font-feature-settings: "ss01", "cv11";
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color var(--t-mid) var(--ease), color var(--t-mid) var(--ease);
+}
 
-<header class="masthead">
-  <a href="#" class="name" aria-label="Kage — home">Kage</a>
-  <nav class="nav">
-    <a href="#work" class="nav-link active">Work,</a>
-    <a href="#info" class="nav-link">Information</a>
-    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light or dark mode">
-      <span class="theme-toggle-icon" aria-hidden="true"></span>
-    </button>
-  </nav>
-</header>
+a { color: inherit; text-decoration: none; }
+button {
+  background: none; border: 0; padding: 0;
+  font: inherit; color: inherit;
+  cursor: pointer; text-align: left;
+}
+img, iframe { max-width: 100%; display: block; }
+::selection { background: var(--ink); color: var(--bg); }
 
-<main>
+/* ---------- MASTHEAD ---------- */
+.masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 24px var(--pad-x) 0;
+  max-width: var(--max-w);
+  width: 100%;
+  margin: 0 auto;
+}
 
-  <section id="work" class="work">
+.name {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(15px, 1.25vw, 17px);
+  letter-spacing: -0.005em;
+  transition: opacity var(--t-fast) var(--ease);
+}
+.name:hover { opacity: 0.55; }
 
-    <!-- 1. DANDY -->
-    <article class="project" data-yt-id="cnjMG6PJPHU" data-orientation="horizontal">
-      <header class="project-header">
-        <h2 class="project-title">Dandy</h2>
-        <p class="project-subtitle">Modern dental lab exclusively designed as a digital lab.</p>
-      </header>
+.nav {
+  display: flex;
+  gap: 0.35em;
+  align-items: baseline;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(15px, 1.25vw, 17px);
+  letter-spacing: -0.005em;
+}
 
-      <div class="project-media project-media--horizontal">
-        <button class="play-trigger" type="button" aria-label="Play Dandy video">
-          <img class="play-thumb" 
-               src="https://i.ytimg.com/vi/cnjMG6PJPHU/maxresdefault.jpg" 
-               onerror="this.src='https://i.ytimg.com/vi/cnjMG6PJPHU/hqdefault.jpg'"
-               alt="" loading="lazy">
-          <span class="play-icon" aria-hidden="true">▶</span>
-        </button>
-        <iframe 
-          class="play-frame"
-          src="" 
-          data-src-template="https://www.youtube-nocookie.com/embed/{ID}?rel=0&modestbranding=1&autoplay=1"
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen
-          title="Dandy spec video"></iframe>
-      </div>
+.nav-link { position: relative; transition: opacity var(--t-fast) var(--ease); }
+.nav-link:not(.active) { opacity: 0.45; }
+.nav-link:hover { opacity: 1; }
 
-      <div class="project-meta">
-        <div class="project-description">
-          <p>Spec piece for Dandy, a digital dental lab, built end-to-end in roughly an hour. Opens in 1985 with a yellow machine called the Lemon and ends on a smile — treating Dandy as the resolution to a forty-year story dental has been telling itself, not the subject of an ad.</p>
-        </div>
-        <dl class="project-grid">
-          <div class="project-grid-row"><dt>Year</dt><dd>2026</dd></div>
-          <div class="project-grid-row"><dt>Role</dt><dd>Creative Direction<br>Edit<br>Voice<br>Script</dd></div>
-          <div class="project-grid-row"><dt>Type</dt><dd>Spec / Brand Film</dd></div>
-          <div class="project-grid-row"><dt>Client</dt><dd>Dandy (spec)</dd></div>
-        </dl>
-      </div>
-    </article>
+.theme-toggle {
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 16px;
+  padding: 4px 6px;
+  border-radius: 50%;
+  transition: opacity var(--t-fast) var(--ease), transform var(--t-mid) var(--ease);
+  opacity: 0.55;
+}
+.theme-toggle:hover { opacity: 1; transform: rotate(180deg); }
+.theme-toggle:focus-visible { outline: 1px dashed var(--ink-soft); outline-offset: 2px; }
 
-    <!-- 2. BASIC.SPACE -->
-    <article class="project" data-yt-id="7S_YcUBMsAc" data-orientation="vertical">
-      <header class="project-header">
-        <h2 class="project-title">basic.space</h2>
-        <p class="project-subtitle">Curated digital marketplace for the next generation.</p>
-      </header>
+.theme-toggle-icon {
+  font-family: var(--display);
+  display: inline-block;
+  line-height: 1;
+}
+:root[data-theme="dark"] .theme-toggle-icon::before { content: "○"; font-size: 14px; }
+:root[data-theme="light"] .theme-toggle-icon::before { content: "●"; font-size: 14px; }
 
-      <div class="project-media project-media--vertical">
-        <button class="play-trigger" type="button" aria-label="Play basic.space video">
-          <img class="play-thumb"
-               src="https://i.ytimg.com/vi/7S_YcUBMsAc/maxresdefault.jpg"
-               onerror="this.src='https://i.ytimg.com/vi/7S_YcUBMsAc/hqdefault.jpg'"
-               alt="" loading="lazy">
-          <span class="play-icon" aria-hidden="true">▶</span>
-        </button>
-        <iframe
-          class="play-frame"
-          src=""
-          data-src-template="https://www.youtube-nocookie.com/embed/{ID}?rel=0&modestbranding=1&autoplay=1"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          title="basic.space content"></iframe>
-      </div>
+/* ---------- MAIN ---------- */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+}
 
-      <div class="project-meta">
-        <div class="project-description">
-          <p>Developed strategic recommendations to shift basic.space's content toward education and virality, opening the brand to a broader audience beyond its core marketplace users.</p>
-          <p>Sourced one brand partnership through the new positioning. Established repeatable narrative frameworks that turned product moments into shareable editorial.</p>
-        </div>
-        <dl class="project-grid">
-          <div class="project-grid-row"><dt>Year</dt><dd>2026</dd></div>
-          <div class="project-grid-row"><dt>Role</dt><dd>Strategy<br>Content Direction<br>Partnerships</dd></div>
-          <div class="project-grid-row"><dt>Type</dt><dd>Consulting / Brand</dd></div>
-          <div class="project-grid-row"><dt>Client</dt><dd>basic.space</dd></div>
-        </dl>
-      </div>
-    </article>
+/* ---------- WORK SECTION ---------- */
+/* Reduced top padding so first project sits closer to header,
+   matching Christopher Ha's tighter spacing. */
+.work {
+  padding-top: clamp(40px, 6vh, 80px);
+  padding-bottom: clamp(80px, 12vh, 140px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(72px, 10vh, 120px);
+}
 
-    <!-- 3. BASIC.SPACE × DESIGN MIAMI -->
-    <article class="project" data-yt-id="D4XV_MTKcKE" data-orientation="vertical">
-      <header class="project-header">
-        <h2 class="project-title">basic.space × Design Miami</h2>
-        <p class="project-subtitle">The world's preeminent collectible design fair.</p>
-      </header>
+/* ---------- PROJECT BLOCK ---------- */
+.project {
+  border-top: 1px solid var(--rule);
+  padding-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  transition: border-color var(--t-mid) var(--ease);
+}
 
-      <div class="project-media project-media--vertical">
-        <button class="play-trigger" type="button" aria-label="Play basic.space x Design Miami video">
-          <img class="play-thumb"
-               src="https://i.ytimg.com/vi/D4XV_MTKcKE/maxresdefault.jpg"
-               onerror="this.src='https://i.ytimg.com/vi/D4XV_MTKcKE/hqdefault.jpg'"
-               alt="" loading="lazy">
-          <span class="play-icon" aria-hidden="true">▶</span>
-        </button>
-        <iframe
-          class="play-frame"
-          src=""
-          data-src-template="https://www.youtube-nocookie.com/embed/{ID}?rel=0&modestbranding=1&autoplay=1"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          title="basic.space x Design Miami"></iframe>
-      </div>
+.project-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 
-      <div class="project-meta">
-        <div class="project-description">
-          <p>Brand and content collaboration spanning live fair coverage and editorial-style social content for one of the design world's most visible annual moments.</p>
-          <p>Direction and execution of original short-form video built to translate the on-the-ground energy of the fair into a format that traveled outside design Twitter.</p>
-        </div>
-        <dl class="project-grid">
-          <div class="project-grid-row"><dt>Year</dt><dd>2026</dd></div>
-          <div class="project-grid-row"><dt>Role</dt><dd>Content Direction<br>Editorial</dd></div>
-          <div class="project-grid-row"><dt>Type</dt><dd>Partnership / Editorial</dd></div>
-          <div class="project-grid-row"><dt>Clients</dt><dd>basic.space<br>Design Miami</dd></div>
-        </dl>
-      </div>
-    </article>
+/* Project titles: bold sans, restrained size — Christopher Ha shape.
+   Big enough to anchor each block, not so big it's a billboard. */
+.project-title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(26px, 2.6vw, 36px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--ink);
+}
 
-    <!-- 4. GEORGE NAKASHIMA WOODWORKERS -->
-    <article class="project" data-yt-id="XpRB_xYQ200" data-orientation="vertical">
-      <header class="project-header">
-        <h2 class="project-title">George Nakashima Woodworkers</h2>
-        <p class="project-subtitle">An American craft furniture studio rooted in lineage and material.</p>
-      </header>
+.project-subtitle {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(15px, 1.3vw, 17px);
+  line-height: 1.4;
+  color: var(--ink-soft);
+  margin: 2px 0 0;
+  max-width: 56ch;
+  letter-spacing: -0.005em;
+}
 
-      <div class="project-media project-media--vertical">
-        <button class="play-trigger" type="button" aria-label="Play George Nakashima Woodworkers video">
-          <img class="play-thumb"
-               src="https://i.ytimg.com/vi/XpRB_xYQ200/maxresdefault.jpg"
-               onerror="this.src='https://i.ytimg.com/vi/XpRB_xYQ200/hqdefault.jpg'"
-               alt="" loading="lazy">
-          <span class="play-icon" aria-hidden="true">▶</span>
-        </button>
-        <iframe
-          class="play-frame"
-          src=""
-          data-src-template="https://www.youtube-nocookie.com/embed/{ID}?rel=0&modestbranding=1&autoplay=1"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          title="George Nakashima Woodworkers"></iframe>
-      </div>
+/* ---------- MEDIA (thumb + iframe in same cell) ---------- */
+.project-media {
+  position: relative;
+  background: #000;
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px var(--rule), 0 30px 60px -30px rgba(0,0,0,0.5);
+  transition: box-shadow var(--t-mid) var(--ease);
+}
 
-      <div class="project-meta">
-        <div class="project-description">
-          <p>Atmospheric editorial content for one of the most storied names in American craft furniture. The brief: translate the studio's deeply analog practice into work that lives natively on social without flattening the lineage.</p>
-        </div>
-        <dl class="project-grid">
-          <div class="project-grid-row"><dt>Year</dt><dd>2025</dd></div>
-          <div class="project-grid-row"><dt>Role</dt><dd>Editorial Direction<br>Production<br>Edit</dd></div>
-          <div class="project-grid-row"><dt>Type</dt><dd>Brand / Editorial</dd></div>
-          <div class="project-grid-row"><dt>Client</dt><dd>George Nakashima Woodworkers</dd></div>
-        </dl>
-      </div>
-    </article>
+.project-media--horizontal {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
 
-    <!-- 5. 3.33AM -->
-    <article class="project" data-yt-id="y5NRk8Qv_0E" data-orientation="vertical">
-      <header class="project-header">
-        <h2 class="project-title">3.33am</h2>
-        <p class="project-subtitle">Atmospheric storytelling for home, design, and culture.</p>
-      </header>
+.project-media--vertical {
+  width: min(420px, 70vw);
+  aspect-ratio: 9 / 16;
+  margin: 0 auto;
+}
 
-      <div class="project-media project-media--vertical">
-        <button class="play-trigger" type="button" aria-label="Play 3.33am video">
-          <img class="play-thumb"
-               src="https://i.ytimg.com/vi/y5NRk8Qv_0E/maxresdefault.jpg"
-               onerror="this.src='https://i.ytimg.com/vi/y5NRk8Qv_0E/hqdefault.jpg'"
-               alt="" loading="lazy">
-          <span class="play-icon" aria-hidden="true">▶</span>
-        </button>
-        <iframe
-          class="play-frame"
-          src=""
-          data-src-template="https://www.youtube-nocookie.com/embed/{ID}?rel=0&modestbranding=1&autoplay=1"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-          title="3.33am studio"></iframe>
-      </div>
+@media (max-width: 640px) {
+  .project-media--vertical { width: 100%; max-width: 360px; }
+}
 
-      <div class="project-meta">
-        <div class="project-description">
-          <p>Built and operate @3.33am.est — a 132K cross-platform community anchored by original atmospheric photography. Repeatable narrative frameworks that translated aesthetic storytelling into audience growth and inbound brand partnerships.</p>
-          <p>Across studio output and brand work, content has driven 250M+ organic views to date. Portfolio anchor is a viral loft post that crossed millions of views.</p>
-        </div>
-        <dl class="project-grid">
-          <div class="project-grid-row"><dt>Year</dt><dd>2023 – Present</dd></div>
-          <div class="project-grid-row"><dt>Role</dt><dd>Founder<br>Creative Direction<br>Editorial</dd></div>
-          <div class="project-grid-row"><dt>Type</dt><dd>Owned Audience / Studio</dd></div>
-          <div class="project-grid-row"><dt>Reach</dt><dd>250M+ organic views<br>132K community</dd></div>
-        </dl>
-      </div>
-    </article>
+.play-trigger {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: pointer;
+  z-index: 2;
+  transition: opacity var(--t-mid) var(--ease);
+}
+.play-trigger:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
 
-  </section>
+.play-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--t-slow) var(--ease), filter var(--t-mid) var(--ease);
+}
 
-  <!-- ============================== -->
-  <!-- INFORMATION                    -->
-  <!-- ============================== -->
-  <section id="info" class="info">
-    <div class="info-bio">
-      <p class="info-lede">Kage is a storytelling operator building brands from 0 to 1.</p>
-      <p class="info-body">From cinematic brand films to social-native content systems, Kage's practice bridges editorial direction, production, and audience strategy to give emerging companies a real point of view.</p>
-    </div>
-    <div class="info-contact">
-      <a href="mailto:kagekgw@gmail.com" class="info-link">kagekgw@gmail.com</a>
-    </div>
-  </section>
+.play-trigger:hover .play-thumb,
+.play-trigger:focus-visible .play-thumb {
+  transform: scale(1.02);
+  filter: brightness(1.06);
+}
 
-</main>
+.play-icon {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  padding-left: 4px;
+  transition: transform var(--t-mid) var(--ease), background var(--t-fast) var(--ease);
+  pointer-events: none;
+  border: 1px solid rgba(255,255,255,0.15);
+}
 
-<footer class="footer">
-  <span class="footer-name">Kage</span>
-  <span class="footer-meta">© <span id="year"></span> — All work pictured remains the property of its respective owners.</span>
-</footer>
+.play-trigger:hover .play-icon,
+.play-trigger:focus-visible .play-icon {
+  transform: translate(-50%, -50%) scale(1.08);
+  background: rgba(0,0,0,0.75);
+  border-color: rgba(255,255,255,0.3);
+}
 
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+.play-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity var(--t-mid) var(--ease);
+}
 
-  // ----- THEME TOGGLE -----
-  const themeToggle = document.getElementById('theme-toggle');
-  const root = document.documentElement;
-  const saved = localStorage.getItem('kage-theme');
-  if (saved === 'light' || saved === 'dark') {
-    root.setAttribute('data-theme', saved);
+.project.is-playing .play-trigger { opacity: 0; pointer-events: none; }
+.project.is-playing .play-frame { opacity: 1; z-index: 2; }
+
+/* ---------- META: description + grid (two-col on desktop) ---------- */
+.project-meta {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (min-width: 800px) {
+  .project-meta {
+    grid-template-columns: 1.4fr 1fr;
+    gap: 56px;
   }
-  themeToggle.addEventListener('click', () => {
-    const current = root.getAttribute('data-theme') || 'dark';
-    const next = current === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    localStorage.setItem('kage-theme', next);
-  });
+}
 
-  // ----- NAV ACTIVE STATE -----
-  const navLinks = document.querySelectorAll('.nav-link');
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-    });
-  });
+.project-description p {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(15px, 1.3vw, 17px);
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 0 0 1em;
+  max-width: 56ch;
+  letter-spacing: -0.005em;
+}
+.project-description p:last-child { margin-bottom: 0; }
 
-  // ----- INLINE PLAY -----
-  const projects = document.querySelectorAll('.project');
-  projects.forEach(project => {
-    const trigger = project.querySelector('.play-trigger');
-    const iframe = project.querySelector('.play-frame');
-    const ytId = project.dataset.ytId;
-    trigger.addEventListener('click', () => {
-      projects.forEach(other => {
-        if (other !== project && other.classList.contains('is-playing')) {
-          other.classList.remove('is-playing');
-          const otherIframe = other.querySelector('.play-frame');
-          if (otherIframe) otherIframe.src = '';
-        }
-      });
-      project.classList.add('is-playing');
-      const template = iframe.dataset.srcTemplate;
-      if (ytId) {
-        iframe.src = template.replace('{ID}', ytId);
-      }
-    });
-  });
-</script>
+/* Metadata grid — kept in mono for textural contrast against sans-serif body.
+   This is the only place mono lives now. */
+.project-grid {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
 
-</body>
-</html>
+.project-grid-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--rule);
+  align-items: start;
+}
+.project-grid-row:last-child { border-bottom: 1px solid var(--rule); }
+
+.project-grid dt {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0;
+  padding-top: 1px;
+  font-weight: 400;
+}
+
+.project-grid dd {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  margin: 0;
+  text-align: right;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* ---------- INFORMATION SECTION ---------- */
+.info {
+  padding: clamp(80px, 14vh, 160px) 0 clamp(60px, 10vh, 120px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  border-top: 1px solid var(--rule);
+}
+
+@media (min-width: 760px) {
+  .info { grid-template-columns: 2fr 1fr; gap: 80px; }
+}
+
+/* Bio lede — display-size sans, the manifesto statement.
+   "Kage is a storytelling operator building brands from 0 to 1." */
+.info-lede {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(28px, 3.4vw, 48px);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  max-width: 22ch;
+  margin: 0 0 0.5em;
+}
+
+/* Bio body — slightly smaller, muted, supporting paragraph */
+.info-body {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(18px, 1.8vw, 24px);
+  line-height: 1.4;
+  color: var(--ink-soft);
+  max-width: 38ch;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.info-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.info-link {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  position: relative;
+  padding-bottom: 2px;
+  transition: color var(--t-fast) var(--ease);
+  font-weight: 400;
+}
+.info-link::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: var(--ink);
+  transform: scaleX(1);
+  transform-origin: right;
+  transition: transform var(--t-mid) var(--ease);
+}
+.info-link:hover { color: var(--ink-soft); }
+.info-link:hover::after { transform: scaleX(0); transform-origin: left; }
+
+/* ---------- FOOTER ---------- */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 24px var(--pad-x) 28px;
+  max-width: var(--max-w);
+  width: 100%;
+  margin: 0 auto;
+  border-top: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+.footer-name {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: -0.005em;
+  text-transform: none;
+  color: var(--ink);
+}
+
+/* ---------- MOBILE TWEAKS ---------- */
+@media (max-width: 640px) {
+  .work { padding-top: 40px; padding-bottom: 60px; gap: 64px; }
+  .play-icon { width: 52px; height: 52px; font-size: 12px; }
+  .footer { flex-direction: column; gap: 8px; align-items: flex-start; }
+  .project-grid-row { grid-template-columns: 1fr 1.6fr; gap: 12px; }
+}
+
+/* ---------- REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
