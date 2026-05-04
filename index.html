@@ -3,11 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ===== SEO / SOCIAL PREVIEW =====
+     These tags control how the URL renders when shared in iMessage, Slack,
+     LinkedIn, email previewers, etc. Without them the URL appears naked.
+     Update the og:url to your live GitHub Pages URL once deployed. -->
 <title>Kage — Selected Work</title>
-<meta name="description" content="Storytelling operator. Founder of 3.33am Studios. Selected work.">
+<meta name="description" content="Storytelling operator. Founder of 3.33am Studios. Brand films, content systems, and editorial work. 250M+ organic views.">
+<meta name="author" content="Kage">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kage — Selected Work">
+<meta property="og:description" content="Storytelling operator. Founder of 3.33am Studios. Selected work.">
+<meta property="og:image" content="https://i.ytimg.com/vi/cnjMG6PJPHU/maxresdefault.jpg">
+<meta property="og:url" content="https://yourusername.github.io/portfolio/">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kage — Selected Work">
+<meta name="twitter:description" content="Storytelling operator. Founder of 3.33am Studios.">
+<meta name="twitter:image" content="https://i.ytimg.com/vi/cnjMG6PJPHU/maxresdefault.jpg">
+
+<!-- Inline SVG favicon — italic K, no external file needed -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230e0d0c'/%3E%3Ctext x='50' y='72' font-family='Georgia,serif' font-style='italic' font-size='72' fill='%23f0ece4' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+
+<!-- Fonts: Cormorant Garamond for display + body italic, JetBrains Mono for utility -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -17,7 +40,7 @@
   <nav class="nav">
     <a href="#work" class="nav-link active">Work,</a>
     <a href="#info" class="nav-link">Information</a>
-    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle light or dark mode">
       <span class="theme-toggle-icon" aria-hidden="true"></span>
     </button>
   </nav>
@@ -27,21 +50,7 @@
 
   <section id="work" class="work">
 
-    <!-- 
-      ============================
-      PROJECT TEMPLATE STRUCTURE
-      ============================
-      Each <article class="project"> contains:
-        - .project-header       (title + subtitle)
-        - .project-media        (thumbnail that swaps to iframe on click)
-        - .project-meta         (description + metadata grid, two-col)
-      
-      To add a project: copy a block, swap the YouTube ID, edit copy. Done.
-    -->
-
-    <!-- ============================== -->
-    <!-- 1. DANDY                       -->
-    <!-- ============================== -->
+    <!-- 1. DANDY -->
     <article class="project" data-yt-id="cnjMG6PJPHU" data-orientation="horizontal">
       <header class="project-header">
         <h2 class="project-title">Dandy</h2>
@@ -80,9 +89,7 @@
       </div>
     </article>
 
-    <!-- ============================== -->
-    <!-- 2. BASIC.SPACE                 -->
-    <!-- ============================== -->
+    <!-- 2. BASIC.SPACE -->
     <article class="project" data-yt-id="7S_YcUBMsAc" data-orientation="vertical">
       <header class="project-header">
         <h2 class="project-title">basic.space</h2>
@@ -121,9 +128,7 @@
       </div>
     </article>
 
-    <!-- ============================== -->
-    <!-- 3. BASIC.SPACE × DESIGN MIAMI  -->
-    <!-- ============================== -->
+    <!-- 3. BASIC.SPACE × DESIGN MIAMI -->
     <article class="project" data-yt-id="D4XV_MTKcKE" data-orientation="vertical">
       <header class="project-header">
         <h2 class="project-title">basic.space × Design Miami</h2>
@@ -162,9 +167,7 @@
       </div>
     </article>
 
-    <!-- ============================== -->
-    <!-- 4. GEORGE NAKASHIMA WOODWORKERS-->
-    <!-- ============================== -->
+    <!-- 4. GEORGE NAKASHIMA WOODWORKERS -->
     <article class="project" data-yt-id="XpRB_xYQ200" data-orientation="vertical">
       <header class="project-header">
         <h2 class="project-title">George Nakashima Woodworkers</h2>
@@ -202,9 +205,7 @@
       </div>
     </article>
 
-    <!-- ============================== -->
-    <!-- 5. 3.33am                      -->
-    <!-- ============================== -->
+    <!-- 5. 3.33AM -->
     <article class="project" data-yt-id="y5NRk8Qv_0E" data-orientation="vertical">
       <header class="project-header">
         <h2 class="project-title">3.33am</h2>
@@ -251,11 +252,14 @@
   <section id="info" class="info">
     <div class="info-bio">
       <p class="info-lede">Kage builds brands from the story out.</p>
-      <p>Storytelling operator and founder of 3.33am Studios — building narrative systems, owned audiences, and strategic brand collaborations across design, culture, and consumer brands. Background in enterprise SaaS and partnerships pairs narrative instinct with commercial execution.</p>
+      <p class="info-body">Storytelling operator and founder of <em>3.33am Studios</em> — building narrative systems, owned audiences, and strategic brand collaborations across design, culture, and consumer brands. Background in enterprise SaaS and partnerships pairs narrative instinct with commercial execution.</p>
+      <p class="info-availability">Currently open to senior roles in storytelling, brand, and new media.</p>
     </div>
     <div class="info-contact">
       <a href="mailto:kagekgw@gmail.com" class="info-link">kagekgw@gmail.com</a>
       <a href="https://www.tiktok.com/@3.33am.est" class="info-link" target="_blank" rel="noopener">@3.33am.est</a>
+      <!-- Add your LinkedIn URL below when ready -->
+      <a href="#" class="info-link info-link--placeholder" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </section>
 
@@ -267,11 +271,11 @@
 </footer>
 
 <script>
-  // ----- INJECT YEAR -----
+  // Inject current year
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // ----- THEME TOGGLE -----
-  // Default = dark. Stored in localStorage so the choice persists across visits.
+  // Default = dark. Persists choice in localStorage.
   const themeToggle = document.getElementById('theme-toggle');
   const root = document.documentElement;
   const saved = localStorage.getItem('kage-theme');
@@ -294,20 +298,18 @@
     });
   });
 
-  // ----- INLINE PLAY: thumbnail → iframe IN PLACE -----
-  // The thumbnail and iframe sit on top of each other in .project-media.
-  // Clicking the trigger swaps the visible state — the thumb fades out, the
-  // iframe loads with autoplay=1 in the URL so it starts immediately.
-  // Clicking elsewhere on another project also stops any currently playing.
+  // ----- INLINE PLAY -----
+  // Click the thumbnail → iframe loads in place with autoplay=1.
+  // Opening another project stops the previous one (prevents two videos
+  // playing simultaneously). No layout shift — the media block stays the
+  // same size whether thumb or video is showing.
   const projects = document.querySelectorAll('.project');
-
   projects.forEach(project => {
     const trigger = project.querySelector('.play-trigger');
     const iframe = project.querySelector('.play-frame');
     const ytId = project.dataset.ytId;
 
     trigger.addEventListener('click', () => {
-      // Stop any other playing video so we never have two going at once
       projects.forEach(other => {
         if (other !== project && other.classList.contains('is-playing')) {
           other.classList.remove('is-playing');
@@ -315,8 +317,6 @@
           if (otherIframe) otherIframe.src = '';
         }
       });
-
-      // Activate this one — set src so YouTube starts loading + autoplays
       project.classList.add('is-playing');
       const template = iframe.dataset.srcTemplate;
       if (ytId) {
