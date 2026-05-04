@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kage — Selected Work</title>
-<meta name="description" content="Creative strategy, brand video, and content direction. Selected work.">
+<meta name="description" content="Storytelling operator. Founder of 3.33am Studios. Selected work.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -18,170 +18,228 @@
     <a href="#work" class="nav-link active">Work,</a>
     <a href="#info" class="nav-link">Information</a>
     <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">
-      <span class="theme-toggle-icon" aria-hidden="true">○</span>
+      <span class="theme-toggle-icon" aria-hidden="true"></span>
     </button>
   </nav>
 </header>
 
 <main>
 
-  <!-- ============================== -->
-  <!-- WORK GRID                      -->
-  <!-- ============================== -->
   <section id="work" class="work">
 
     <!-- 
       ============================
-      EACH WORK ITEM = ONE <article>
+      PROJECT TEMPLATE STRUCTURE
       ============================
-      To add or edit a project:
-      1. Duplicate one <article class="work-item"> block
-      2. Set data-yt-id to the YouTube video ID
-      3. Set data-orientation to "horizontal" or "vertical"
-      4. Update title, subtitle, tags, caption
+      Each <article class="project"> contains:
+        - .project-header       (title + subtitle)
+        - .project-media        (thumbnail that swaps to iframe on click)
+        - .project-meta         (description + metadata grid, two-col)
       
-      The thumbnail auto-pulls from YouTube using the video ID.
-      To override with a custom thumbnail in YouTube Studio: set it there,
-      and it'll appear here automatically — no code changes needed.
+      To add a project: copy a block, swap the YouTube ID, edit copy. Done.
     -->
 
-    <!-- 1. Dandy -->
-    <article class="work-item" data-yt-id="cnjMG6PJPHU" data-orientation="horizontal">
-      <button class="work-trigger" type="button" aria-expanded="false">
-        <div class="work-thumb work-thumb--horizontal">
-          <img src="https://i.ytimg.com/vi/cnjMG6PJPHU/maxresdefault.jpg" 
+    <!-- ============================== -->
+    <!-- 1. DANDY                       -->
+    <!-- ============================== -->
+    <article class="project" data-yt-id="cnjMG6PJPHU" data-orientation="horizontal">
+      <header class="project-header">
+        <h2 class="project-title">Dandy</h2>
+        <p class="project-subtitle">A 1985 yellow machine and the future of dental.</p>
+      </header>
+
+      <div class="project-media project-media--horizontal">
+        <button class="play-trigger" type="button" aria-label="Play Dandy video">
+          <img class="play-thumb" 
+               src="https://i.ytimg.com/vi/cnjMG6PJPHU/maxresdefault.jpg" 
                onerror="this.src='https://i.ytimg.com/vi/cnjMG6PJPHU/hqdefault.jpg'"
                alt="" loading="lazy">
+          <span class="play-icon" aria-hidden="true">▶</span>
+        </button>
+        <iframe 
+          class="play-frame"
+          src="" 
+          data-src-template="https://www.youtube-nocookie.com/embed/{ID}?rel=0&modestbranding=1&autoplay=1"
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen
+          title="Dandy spec video"></iframe>
+      </div>
+
+      <div class="project-meta">
+        <div class="project-description">
+          <p>Spec piece for Dandy, a digital dental lab, built end-to-end in roughly an hour. Opens in 1985 with a yellow machine called the Lemon and ends on a smile — treating Dandy as the resolution to a forty-year story dental has been telling itself, not the subject of an ad.</p>
+          <p>The film prompted a same-day reply from a co-founder and led to executive screening within 24 hours.</p>
         </div>
-        <div class="work-text">
-          <h2 class="work-title">Dandy <span class="work-title-repeat">Dandy</span></h2>
-          <p class="work-subtitle">A 1985 yellow machine and the future of dental.</p>
-          <p class="work-tags">Spec, Creative Direction, Edit, Voice</p>
-        </div>
-      </button>
-      <div class="work-video" hidden>
-        <div class="video-frame video-frame--horizontal">
-          <iframe 
-            src="" 
-            data-src-template="https://www.youtube-nocookie.com/embed/{ID}?rel=0&modestbranding=1"
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen
-            title="Dandy spec video"></iframe>
-        </div>
-        <p class="work-caption">Spec piece for Dandy, a digital dental lab. Built from brief to delivery in roughly an hour. Opens in 1985 with a yellow machine called the Lemon and ends on a smile.</p>
+        <dl class="project-grid">
+          <div class="project-grid-row"><dt>Year</dt><dd>2026</dd></div>
+          <div class="project-grid-row"><dt>Role</dt><dd>Creative Direction<br>Edit<br>Voice<br>Script</dd></div>
+          <div class="project-grid-row"><dt>Type</dt><dd>Spec / Brand Film</dd></div>
+          <div class="project-grid-row"><dt>Client</dt><dd>Dandy (spec)</dd></div>
+        </dl>
       </div>
     </article>
 
-    <!-- 2. basic.space -->
-    <article class="work-item" data-yt-id="7S_YcUBMsAc" data-orientation="vertical">
-      <button class="work-trigger" type="button" aria-expanded="false">
-        <div class="work-thumb work-thumb--vertical">
-          <img src="https://i.ytimg.com/vi/7S_YcUBMsAc/maxresdefault.jpg" 
+    <!-- ============================== -->
+    <!-- 2. BASIC.SPACE                 -->
+    <!-- ============================== -->
+    <article class="project" data-yt-id="7S_YcUBMsAc" data-orientation="vertical">
+      <header class="project-header">
+        <h2 class="project-title">basic.space</h2>
+        <p class="project-subtitle">Repositioning a marketplace for education and virality.</p>
+      </header>
+
+      <div class="project-media project-media--vertical">
+        <button class="play-trigger" type="button" aria-label="Play basic.space video">
+          <img class="play-thumb"
+               src="https://i.ytimg.com/vi/7S_YcUBMsAc/maxresdefault.jpg"
                onerror="this.src='https://i.ytimg.com/vi/7S_YcUBMsAc/hqdefault.jpg'"
                alt="" loading="lazy">
+          <span class="play-icon" aria-hidden="true">▶</span>
+        </button>
+        <iframe
+          class="play-frame"
+          src=""
+          data-src-template="https://www.youtube-nocookie.com/embed/{ID}?rel=0&modestbranding=1&autoplay=1"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          title="basic.space content"></iframe>
+      </div>
+
+      <div class="project-meta">
+        <div class="project-description">
+          <p>Developed strategic recommendations to shift basic.space's content toward education and virality, opening the brand to a broader audience beyond its core marketplace users.</p>
+          <p>Sourced one brand partnership through the new positioning. Established repeatable narrative frameworks that turned product moments into shareable editorial.</p>
         </div>
-        <div class="work-text">
-          <h2 class="work-title">basic.space <span class="work-title-repeat">basic.space</span></h2>
-          <p class="work-subtitle">Brand strategy and content repositioning.</p>
-          <p class="work-tags">Strategy, Partnerships, Content</p>
-        </div>
-      </button>
-      <div class="work-video" hidden>
-        <div class="video-frame video-frame--vertical">
-          <iframe 
-            src="" 
-            data-src-template="https://www.youtube-nocookie.com/embed/{ID}?rel=0&modestbranding=1"
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen
-            title="basic.space content"></iframe>
-        </div>
-        <p class="work-caption">Consulted on brand strategy and partnerships. Repositioned content to optimize for education and virality. Two brand partnerships sourced and closed.</p>
+        <dl class="project-grid">
+          <div class="project-grid-row"><dt>Year</dt><dd>2024 – 2025</dd></div>
+          <div class="project-grid-row"><dt>Role</dt><dd>Strategy<br>Content Direction<br>Partnerships</dd></div>
+          <div class="project-grid-row"><dt>Type</dt><dd>Consulting / Brand</dd></div>
+          <div class="project-grid-row"><dt>Client</dt><dd>basic.space</dd></div>
+        </dl>
       </div>
     </article>
 
-    <!-- 3. basic.space × Design Miami -->
-    <article class="work-item" data-yt-id="D4XV_MTKcKE" data-orientation="vertical">
-      <button class="work-trigger" type="button" aria-expanded="false">
-        <div class="work-thumb work-thumb--vertical">
-          <img src="https://i.ytimg.com/vi/D4XV_MTKcKE/maxresdefault.jpg" 
+    <!-- ============================== -->
+    <!-- 3. BASIC.SPACE × DESIGN MIAMI  -->
+    <!-- ============================== -->
+    <article class="project" data-yt-id="D4XV_MTKcKE" data-orientation="vertical">
+      <header class="project-header">
+        <h2 class="project-title">basic.space × Design Miami</h2>
+        <p class="project-subtitle">Editorial coverage of the fair, built for social.</p>
+      </header>
+
+      <div class="project-media project-media--vertical">
+        <button class="play-trigger" type="button" aria-label="Play basic.space x Design Miami video">
+          <img class="play-thumb"
+               src="https://i.ytimg.com/vi/D4XV_MTKcKE/maxresdefault.jpg"
                onerror="this.src='https://i.ytimg.com/vi/D4XV_MTKcKE/hqdefault.jpg'"
                alt="" loading="lazy">
+          <span class="play-icon" aria-hidden="true">▶</span>
+        </button>
+        <iframe
+          class="play-frame"
+          src=""
+          data-src-template="https://www.youtube-nocookie.com/embed/{ID}?rel=0&modestbranding=1&autoplay=1"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          title="basic.space x Design Miami"></iframe>
+      </div>
+
+      <div class="project-meta">
+        <div class="project-description">
+          <p>Brand and content collaboration spanning live fair coverage and editorial-style social content for one of the design world's most visible annual moments.</p>
+          <p>Direction and execution of original short-form video built to translate the on-the-ground energy of the fair into a format that traveled outside design Twitter.</p>
         </div>
-        <div class="work-text">
-          <h2 class="work-title">basic.space × Design Miami <span class="work-title-repeat">basic.space × Design Miami</span></h2>
-          <p class="work-subtitle">Editorial coverage of the fair.</p>
-          <p class="work-tags">Content, Editorial, Partnerships</p>
-        </div>
-      </button>
-      <div class="work-video" hidden>
-        <div class="video-frame video-frame--vertical">
-          <iframe 
-            src="" 
-            data-src-template="https://www.youtube-nocookie.com/embed/{ID}?rel=0&modestbranding=1"
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen
-            title="basic.space x Design Miami"></iframe>
-        </div>
-        <p class="work-caption">Brand and content collaboration spanning fair coverage and editorial-style social.</p>
+        <dl class="project-grid">
+          <div class="project-grid-row"><dt>Year</dt><dd>2024</dd></div>
+          <div class="project-grid-row"><dt>Role</dt><dd>Content Direction<br>Editorial<br>On-site Production</dd></div>
+          <div class="project-grid-row"><dt>Type</dt><dd>Partnership / Editorial</dd></div>
+          <div class="project-grid-row"><dt>Clients</dt><dd>basic.space<br>Design Miami</dd></div>
+        </dl>
       </div>
     </article>
 
-    <!-- 4. George Nakashima Woodworkers -->
-    <article class="work-item" data-yt-id="XpRB_xYQ200" data-orientation="vertical">
-      <button class="work-trigger" type="button" aria-expanded="false">
-        <div class="work-thumb work-thumb--vertical">
-          <img src="https://i.ytimg.com/vi/XpRB_xYQ200/maxresdefault.jpg" 
+    <!-- ============================== -->
+    <!-- 4. GEORGE NAKASHIMA WOODWORKERS-->
+    <!-- ============================== -->
+    <article class="project" data-yt-id="XpRB_xYQ200" data-orientation="vertical">
+      <header class="project-header">
+        <h2 class="project-title">George Nakashima Woodworkers</h2>
+        <p class="project-subtitle">Craft, lineage, and quiet objects.</p>
+      </header>
+
+      <div class="project-media project-media--vertical">
+        <button class="play-trigger" type="button" aria-label="Play George Nakashima Woodworkers video">
+          <img class="play-thumb"
+               src="https://i.ytimg.com/vi/XpRB_xYQ200/maxresdefault.jpg"
                onerror="this.src='https://i.ytimg.com/vi/XpRB_xYQ200/hqdefault.jpg'"
                alt="" loading="lazy">
+          <span class="play-icon" aria-hidden="true">▶</span>
+        </button>
+        <iframe
+          class="play-frame"
+          src=""
+          data-src-template="https://www.youtube-nocookie.com/embed/{ID}?rel=0&modestbranding=1&autoplay=1"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          title="George Nakashima Woodworkers"></iframe>
+      </div>
+
+      <div class="project-meta">
+        <div class="project-description">
+          <p>Atmospheric editorial content for one of the most storied names in American craft furniture. The brief: translate the studio's deeply analog practice into work that lives natively on social without flattening the lineage.</p>
         </div>
-        <div class="work-text">
-          <h2 class="work-title">George Nakashima Woodworkers <span class="work-title-repeat">George Nakashima Woodworkers</span></h2>
-          <p class="work-subtitle">Craft, lineage, and quiet objects.</p>
-          <p class="work-tags">Content, Editorial</p>
-        </div>
-      </button>
-      <div class="work-video" hidden>
-        <div class="video-frame video-frame--vertical">
-          <iframe 
-            src="" 
-            data-src-template="https://www.youtube-nocookie.com/embed/{ID}?rel=0&modestbranding=1"
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen
-            title="George Nakashima Woodworkers"></iframe>
-        </div>
-        <p class="work-caption">Atmospheric editorial content for one of the most storied names in American craft furniture.</p>
+        <dl class="project-grid">
+          <div class="project-grid-row"><dt>Year</dt><dd>2024</dd></div>
+          <div class="project-grid-row"><dt>Role</dt><dd>Editorial Direction<br>Production<br>Edit</dd></div>
+          <div class="project-grid-row"><dt>Type</dt><dd>Brand / Editorial</dd></div>
+          <div class="project-grid-row"><dt>Client</dt><dd>George Nakashima Woodworkers</dd></div>
+        </dl>
       </div>
     </article>
 
-    <!-- 5. 3.33am -->
-    <article class="work-item" data-yt-id="y5NRk8Qv_0E" data-orientation="vertical">
-      <button class="work-trigger" type="button" aria-expanded="false">
-        <div class="work-thumb work-thumb--vertical">
-          <img src="https://i.ytimg.com/vi/y5NRk8Qv_0E/maxresdefault.jpg" 
+    <!-- ============================== -->
+    <!-- 5. 3.33am                      -->
+    <!-- ============================== -->
+    <article class="project" data-yt-id="y5NRk8Qv_0E" data-orientation="vertical">
+      <header class="project-header">
+        <h2 class="project-title">3.33am</h2>
+        <p class="project-subtitle">A 132K community at the intersection of home, design, and culture.</p>
+      </header>
+
+      <div class="project-media project-media--vertical">
+        <button class="play-trigger" type="button" aria-label="Play 3.33am video">
+          <img class="play-thumb"
+               src="https://i.ytimg.com/vi/y5NRk8Qv_0E/maxresdefault.jpg"
                onerror="this.src='https://i.ytimg.com/vi/y5NRk8Qv_0E/hqdefault.jpg'"
                alt="" loading="lazy">
+          <span class="play-icon" aria-hidden="true">▶</span>
+        </button>
+        <iframe
+          class="play-frame"
+          src=""
+          data-src-template="https://www.youtube-nocookie.com/embed/{ID}?rel=0&modestbranding=1&autoplay=1"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          title="3.33am studio"></iframe>
+      </div>
+
+      <div class="project-meta">
+        <div class="project-description">
+          <p>Built and operate @3.33am.est — a 132K cross-platform community anchored by original atmospheric photography. Repeatable narrative frameworks that translated aesthetic storytelling into audience growth and inbound brand partnerships.</p>
+          <p>Across studio output and brand work, content has driven 250M+ organic views to date. Portfolio anchor is a viral loft post that crossed millions of views.</p>
         </div>
-        <div class="work-text">
-          <h2 class="work-title">3.33am <span class="work-title-repeat">3.33am</span></h2>
-          <p class="work-subtitle">A 132K community at the intersection of home, design, and culture.</p>
-          <p class="work-tags">Studio, Founder, 250M+ views</p>
-        </div>
-      </button>
-      <div class="work-video" hidden>
-        <div class="video-frame video-frame--vertical">
-          <iframe 
-            src="" 
-            data-src-template="https://www.youtube-nocookie.com/embed/{ID}?rel=0&modestbranding=1"
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen
-            title="3.33am studio"></iframe>
-        </div>
-        <p class="work-caption">Built and operate @3.33am.est across platforms. Across studio output and brand work, content has driven 250M+ organic views.</p>
+        <dl class="project-grid">
+          <div class="project-grid-row"><dt>Year</dt><dd>2023 – Present</dd></div>
+          <div class="project-grid-row"><dt>Role</dt><dd>Founder<br>Creative Direction<br>Editorial</dd></div>
+          <div class="project-grid-row"><dt>Type</dt><dd>Owned Audience / Studio</dd></div>
+          <div class="project-grid-row"><dt>Reach</dt><dd>250M+ organic views<br>132K community</dd></div>
+        </dl>
       </div>
     </article>
 
@@ -192,8 +250,8 @@
   <!-- ============================== -->
   <section id="info" class="info">
     <div class="info-bio">
-      <p>Kage is a creative strategist and editor making brand films, content systems, and social-native work for companies that want a real point of view.</p>
-      <p>Studio practice runs as <em>3.33am</em>. Selected clients include basic.space, Design Miami, and George Nakashima Woodworkers. Background in revenue and partnerships at venture-backed SaaS.</p>
+      <p class="info-lede">Kage builds brands from the story out.</p>
+      <p>Storytelling operator and founder of 3.33am Studios — building narrative systems, owned audiences, and strategic brand collaborations across design, culture, and consumer brands. Background in enterprise SaaS and partnerships pairs narrative instinct with commercial execution.</p>
     </div>
     <div class="info-contact">
       <a href="mailto:kagekgw@gmail.com" class="info-link">kagekgw@gmail.com</a>
@@ -209,21 +267,17 @@
 </footer>
 
 <script>
-  // Inject current year
+  // ----- INJECT YEAR -----
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // ----- THEME TOGGLE -----
-  // Persists the user's choice in localStorage. Default is dark mode (set on
-  // <html data-theme="dark"> in the markup) — we flip to light on toggle.
+  // Default = dark. Stored in localStorage so the choice persists across visits.
   const themeToggle = document.getElementById('theme-toggle');
   const root = document.documentElement;
-  
-  // Restore saved preference, if any
   const saved = localStorage.getItem('kage-theme');
   if (saved === 'light' || saved === 'dark') {
     root.setAttribute('data-theme', saved);
   }
-  
   themeToggle.addEventListener('click', () => {
     const current = root.getAttribute('data-theme') || 'dark';
     const next = current === 'dark' ? 'light' : 'dark';
@@ -240,44 +294,33 @@
     });
   });
 
-  // ----- WORK ITEM EXPAND/COLLAPSE WITH YOUTUBE LAZY-LOAD -----
-  // The iframe src is set only on click. This keeps the homepage fast and
-  // stops other open videos from playing when a viewer opens a different one.
-  const items = document.querySelectorAll('.work-item');
+  // ----- INLINE PLAY: thumbnail → iframe IN PLACE -----
+  // The thumbnail and iframe sit on top of each other in .project-media.
+  // Clicking the trigger swaps the visible state — the thumb fades out, the
+  // iframe loads with autoplay=1 in the URL so it starts immediately.
+  // Clicking elsewhere on another project also stops any currently playing.
+  const projects = document.querySelectorAll('.project');
 
-  items.forEach(item => {
-    const trigger = item.querySelector('.work-trigger');
-    const video = item.querySelector('.work-video');
-    const iframe = item.querySelector('iframe');
-    const ytId = item.dataset.ytId;
+  projects.forEach(project => {
+    const trigger = project.querySelector('.play-trigger');
+    const iframe = project.querySelector('.play-frame');
+    const ytId = project.dataset.ytId;
 
     trigger.addEventListener('click', () => {
-      const isOpen = item.classList.contains('is-open');
-
-      // Close any other open item
-      items.forEach(other => {
-        if (other !== item && other.classList.contains('is-open')) {
-          other.classList.remove('is-open');
-          other.querySelector('.work-trigger').setAttribute('aria-expanded', 'false');
-          const otherIframe = other.querySelector('iframe');
+      // Stop any other playing video so we never have two going at once
+      projects.forEach(other => {
+        if (other !== project && other.classList.contains('is-playing')) {
+          other.classList.remove('is-playing');
+          const otherIframe = other.querySelector('.play-frame');
           if (otherIframe) otherIframe.src = '';
-          other.querySelector('.work-video').hidden = true;
         }
       });
 
-      if (isOpen) {
-        item.classList.remove('is-open');
-        trigger.setAttribute('aria-expanded', 'false');
-        iframe.src = '';
-        video.hidden = true;
-      } else {
-        item.classList.add('is-open');
-        trigger.setAttribute('aria-expanded', 'true');
-        video.hidden = false;
-        const template = iframe.dataset.srcTemplate;
-        if (ytId) {
-          iframe.src = template.replace('{ID}', ytId);
-        }
+      // Activate this one — set src so YouTube starts loading + autoplays
+      project.classList.add('is-playing');
+      const template = iframe.dataset.srcTemplate;
+      if (ytId) {
+        iframe.src = template.replace('{ID}', ytId);
       }
     });
   });
