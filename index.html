@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +17,9 @@
   <nav class="nav">
     <a href="#work" class="nav-link active">Work,</a>
     <a href="#info" class="nav-link">Information</a>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">
+      <span class="theme-toggle-icon" aria-hidden="true">○</span>
+    </button>
   </nav>
 </header>
 
@@ -36,11 +39,20 @@
       2. Set data-yt-id to the YouTube video ID
       3. Set data-orientation to "horizontal" or "vertical"
       4. Update title, subtitle, tags, caption
+      
+      The thumbnail auto-pulls from YouTube using the video ID.
+      To override with a custom thumbnail in YouTube Studio: set it there,
+      and it'll appear here automatically — no code changes needed.
     -->
 
     <!-- 1. Dandy -->
     <article class="work-item" data-yt-id="cnjMG6PJPHU" data-orientation="horizontal">
       <button class="work-trigger" type="button" aria-expanded="false">
+        <div class="work-thumb work-thumb--horizontal">
+          <img src="https://i.ytimg.com/vi/cnjMG6PJPHU/maxresdefault.jpg" 
+               onerror="this.src='https://i.ytimg.com/vi/cnjMG6PJPHU/hqdefault.jpg'"
+               alt="" loading="lazy">
+        </div>
         <div class="work-text">
           <h2 class="work-title">Dandy <span class="work-title-repeat">Dandy</span></h2>
           <p class="work-subtitle">A 1985 yellow machine and the future of dental.</p>
@@ -64,6 +76,11 @@
     <!-- 2. basic.space -->
     <article class="work-item" data-yt-id="7S_YcUBMsAc" data-orientation="vertical">
       <button class="work-trigger" type="button" aria-expanded="false">
+        <div class="work-thumb work-thumb--vertical">
+          <img src="https://i.ytimg.com/vi/7S_YcUBMsAc/maxresdefault.jpg" 
+               onerror="this.src='https://i.ytimg.com/vi/7S_YcUBMsAc/hqdefault.jpg'"
+               alt="" loading="lazy">
+        </div>
         <div class="work-text">
           <h2 class="work-title">basic.space <span class="work-title-repeat">basic.space</span></h2>
           <p class="work-subtitle">Brand strategy and content repositioning.</p>
@@ -87,6 +104,11 @@
     <!-- 3. basic.space × Design Miami -->
     <article class="work-item" data-yt-id="D4XV_MTKcKE" data-orientation="vertical">
       <button class="work-trigger" type="button" aria-expanded="false">
+        <div class="work-thumb work-thumb--vertical">
+          <img src="https://i.ytimg.com/vi/D4XV_MTKcKE/maxresdefault.jpg" 
+               onerror="this.src='https://i.ytimg.com/vi/D4XV_MTKcKE/hqdefault.jpg'"
+               alt="" loading="lazy">
+        </div>
         <div class="work-text">
           <h2 class="work-title">basic.space × Design Miami <span class="work-title-repeat">basic.space × Design Miami</span></h2>
           <p class="work-subtitle">Editorial coverage of the fair.</p>
@@ -110,6 +132,11 @@
     <!-- 4. George Nakashima Woodworkers -->
     <article class="work-item" data-yt-id="XpRB_xYQ200" data-orientation="vertical">
       <button class="work-trigger" type="button" aria-expanded="false">
+        <div class="work-thumb work-thumb--vertical">
+          <img src="https://i.ytimg.com/vi/XpRB_xYQ200/maxresdefault.jpg" 
+               onerror="this.src='https://i.ytimg.com/vi/XpRB_xYQ200/hqdefault.jpg'"
+               alt="" loading="lazy">
+        </div>
         <div class="work-text">
           <h2 class="work-title">George Nakashima Woodworkers <span class="work-title-repeat">George Nakashima Woodworkers</span></h2>
           <p class="work-subtitle">Craft, lineage, and quiet objects.</p>
@@ -133,6 +160,11 @@
     <!-- 5. 3.33am -->
     <article class="work-item" data-yt-id="y5NRk8Qv_0E" data-orientation="vertical">
       <button class="work-trigger" type="button" aria-expanded="false">
+        <div class="work-thumb work-thumb--vertical">
+          <img src="https://i.ytimg.com/vi/y5NRk8Qv_0E/maxresdefault.jpg" 
+               onerror="this.src='https://i.ytimg.com/vi/y5NRk8Qv_0E/hqdefault.jpg'"
+               alt="" loading="lazy">
+        </div>
         <div class="work-text">
           <h2 class="work-title">3.33am <span class="work-title-repeat">3.33am</span></h2>
           <p class="work-subtitle">A 132K community at the intersection of home, design, and culture.</p>
@@ -180,7 +212,26 @@
   // Inject current year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Nav active state
+  // ----- THEME TOGGLE -----
+  // Persists the user's choice in localStorage. Default is dark mode (set on
+  // <html data-theme="dark"> in the markup) — we flip to light on toggle.
+  const themeToggle = document.getElementById('theme-toggle');
+  const root = document.documentElement;
+  
+  // Restore saved preference, if any
+  const saved = localStorage.getItem('kage-theme');
+  if (saved === 'light' || saved === 'dark') {
+    root.setAttribute('data-theme', saved);
+  }
+  
+  themeToggle.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme') || 'dark';
+    const next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('kage-theme', next);
+  });
+
+  // ----- NAV ACTIVE STATE -----
   const navLinks = document.querySelectorAll('.nav-link');
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
@@ -189,10 +240,9 @@
     });
   });
 
-  // Work item expand/collapse with YouTube lazy-load.
-  // The iframe src is set only on click. This keeps the homepage fast (no
-  // preloading 5 YouTube players), respects bandwidth, and stops other
-  // open videos from playing when a viewer opens a different project.
+  // ----- WORK ITEM EXPAND/COLLAPSE WITH YOUTUBE LAZY-LOAD -----
+  // The iframe src is set only on click. This keeps the homepage fast and
+  // stops other open videos from playing when a viewer opens a different one.
   const items = document.querySelectorAll('.work-item');
 
   items.forEach(item => {
@@ -204,7 +254,7 @@
     trigger.addEventListener('click', () => {
       const isOpen = item.classList.contains('is-open');
 
-      // Close any other open item — only one video plays at a time
+      // Close any other open item
       items.forEach(other => {
         if (other !== item && other.classList.contains('is-open')) {
           other.classList.remove('is-open');
