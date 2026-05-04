@@ -1,0 +1,388 @@
+/* =====================================================
+   KAGE — PORTFOLIO STYLES
+   Editorial-minimal, video-first.
+   Built to drop into GitHub Pages and just work.
+   ===================================================== */
+
+/* ---------- TOKENS ---------- */
+:root {
+  --bg: #f6f4ef;          /* warm off-white, like aged paper */
+  --bg-deep: #efece4;     /* slightly deeper card surface */
+  --ink: #161513;         /* near-black, never pure */
+  --ink-soft: #5a5854;    /* muted text */
+  --ink-faint: #a09e98;   /* tertiary / metadata */
+  --rule: #d8d4c8;        /* hairline rules */
+  --accent: #161513;      /* used sparingly for hover underline */
+
+  --max-w: 1280px;
+  --pad-x: clamp(20px, 4vw, 56px);
+
+  --display: "Fraunces", "Times New Roman", Times, serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --t-fast: 180ms;
+  --t-mid: 380ms;
+  --t-slow: 700ms;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* ---------- RESET ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "ss02";
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a { color: inherit; text-decoration: none; }
+button {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+img, iframe { max-width: 100%; display: block; }
+
+::selection { background: var(--ink); color: var(--bg); }
+
+/* ---------- MASTHEAD ---------- */
+.masthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 28px var(--pad-x) 0;
+  max-width: var(--max-w);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.name {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(20px, 2vw, 26px);
+  letter-spacing: -0.01em;
+  transition: opacity var(--t-fast) var(--ease);
+}
+.name:hover { opacity: 0.55; }
+
+.nav {
+  display: flex;
+  gap: 0.4em;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(20px, 2vw, 26px);
+  letter-spacing: -0.01em;
+}
+
+.nav-link {
+  position: relative;
+  transition: opacity var(--t-fast) var(--ease);
+}
+.nav-link:not(.active) { opacity: 0.45; }
+.nav-link:hover { opacity: 1; }
+
+/* ---------- MAIN ---------- */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+}
+
+/* ---------- WORK SECTION ---------- */
+.work {
+  padding-top: clamp(80px, 18vh, 200px);
+  padding-bottom: 120px;
+}
+
+.work-item {
+  border-top: 1px solid var(--rule);
+  position: relative;
+}
+.work-item:last-of-type {
+  border-bottom: 1px solid var(--rule);
+}
+
+.work-trigger {
+  padding: 32px 0;
+  display: block;
+  position: relative;
+  transition: padding var(--t-mid) var(--ease);
+}
+
+.work-text {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+}
+
+/* Hover-reveal title repeat — a duplicate slides in alongside the title on
+   hover. Adds an editorial flourish without busy animation. */
+.work-title {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(36px, 6.5vw, 80px);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  margin: 0;
+  position: relative;
+  display: inline-block;
+  padding-right: 0.2em;
+}
+
+.work-title-repeat {
+  display: inline-block;
+  margin-left: 0.3em;
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity var(--t-mid) var(--ease), transform var(--t-mid) var(--ease);
+  pointer-events: none;
+  color: var(--ink-faint);
+}
+
+.work-trigger:hover .work-title-repeat,
+.work-trigger:focus-visible .work-title-repeat {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.work-subtitle {
+  font-family: var(--display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(15px, 1.4vw, 18px);
+  color: var(--ink-soft);
+  margin: 4px 0 0;
+  max-width: 56ch;
+}
+
+.work-tags {
+  font-family: var(--mono);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 14px 0 0;
+}
+
+/* small "play" affordance, top right of the row */
+.work-trigger::after {
+  content: "▶";
+  position: absolute;
+  top: 38px;
+  right: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  letter-spacing: 0.1em;
+  transition: transform var(--t-mid) var(--ease), color var(--t-fast) var(--ease);
+}
+.work-trigger:hover::after {
+  color: var(--ink);
+  transform: scale(1.15);
+}
+.work-item.is-open .work-trigger::after {
+  content: "×";
+  font-size: 22px;
+  top: 30px;
+}
+
+/* ---------- VIDEO PANEL ---------- */
+.work-video {
+  padding: 12px 0 48px;
+  animation: fadeUp var(--t-slow) var(--ease) both;
+}
+
+/* Base frame — shared styling for both orientations.
+   The iframe positions absolutely inside an aspect-ratio-controlled box. */
+.video-frame {
+  position: relative;
+  background: #000;
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow:
+    0 0 0 1px var(--rule),
+    0 30px 60px -30px rgba(0,0,0,0.25);
+  margin: 0 auto;
+}
+
+/* Horizontal (16:9) — full-width */
+.video-frame--horizontal {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+/* Vertical (9:16) — capped width, centered.
+   Shorts at full width would be too tall. We cap them at a height that's
+   close to a native phone screen (about 720px) so they read as "phone-sized"
+   rather than "billboard." */
+.video-frame--vertical {
+  width: min(420px, 60vw);
+  aspect-ratio: 9 / 16;
+}
+
+@media (max-width: 640px) {
+  .video-frame--vertical {
+    width: 100%;
+    max-width: 360px;
+  }
+}
+
+.video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.work-caption {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 60ch;
+  margin: 20px 0 0;
+}
+
+/* Center the caption under vertical videos for visual balance */
+.work-item[data-orientation="vertical"] .work-caption {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- INFORMATION SECTION ---------- */
+.info {
+  padding: clamp(80px, 14vh, 160px) 0 clamp(80px, 14vh, 160px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 56px;
+  border-top: 1px solid var(--rule);
+}
+
+@media (min-width: 760px) {
+  .info { grid-template-columns: 2fr 1fr; gap: 80px; }
+}
+
+.info-bio p {
+  font-family: var(--display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  max-width: 32ch;
+  margin: 0 0 1em;
+}
+
+.info-bio em {
+  font-style: normal;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 1px;
+}
+
+.info-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.info-link {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  position: relative;
+  padding-bottom: 2px;
+  transition: color var(--t-fast) var(--ease);
+}
+.info-link::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: var(--ink);
+  transform: scaleX(1);
+  transform-origin: right;
+  transition: transform var(--t-mid) var(--ease);
+}
+.info-link:hover { color: var(--ink-soft); }
+.info-link:hover::after { transform: scaleX(0); transform-origin: left; }
+
+/* ---------- FOOTER ---------- */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 28px var(--pad-x) 32px;
+  max-width: var(--max-w);
+  width: 100%;
+  margin: 0 auto;
+  border-top: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+}
+
+.footer-name {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--ink);
+}
+
+/* ---------- MOBILE TWEAKS ---------- */
+@media (max-width: 640px) {
+  .work { padding-top: 72px; padding-bottom: 72px; }
+  .work-trigger { padding: 24px 0; }
+  .work-trigger::after { top: 30px; }
+  .work-item.is-open .work-trigger::after { top: 22px; }
+  .work-tags { font-size: 10px; }
+
+  /* On mobile, hide the title-repeat — there's no hover, no point */
+  .work-title-repeat { display: none; }
+
+  .footer { flex-direction: column; gap: 8px; align-items: flex-start; }
+}
+
+/* ---------- REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
